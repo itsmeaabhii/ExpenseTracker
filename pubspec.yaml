@@ -1,0 +1,38 @@
+name: budget_buddy
+description: A personal finance management app (BudgetBuddy) with a clean white and navy blue UI.
+publish_to: "none"
+
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_riverpod: any
+  sqflite: any
+  path_provider: any
+  path: any
+  fl_chart: any
+  intl: any
+  share_plus: any
+  csv: any
+  image_picker: any
+  shared_preferences: any
+  flutter_local_notifications: any
+  timezone: any
+  permission_handler: any
+  universal_platform: any
+
+  cupertino_icons: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
+
+flutter:
+  uses-material-design: true
+
