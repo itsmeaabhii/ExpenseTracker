@@ -21,21 +21,26 @@ class SettingsTab extends ConsumerWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 8),
         Text(
           'Customize your app preferences',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.7),
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.grey[400]
+                : Colors.grey[700],
           ),
         ),
         const SizedBox(height: 32),
-        Padding(
+        Container(
           padding: const EdgeInsets.only(left: 4, bottom: 12),
           child: Text(
             'APPEARANCE',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
               fontWeight: FontWeight.w600,
               letterSpacing: 0.5,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.grey[300]
+                  : Colors.grey[800],
             ),
           ),
         ),
@@ -51,13 +56,16 @@ class SettingsTab extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 32),
-        Padding(
+        Container(
           padding: const EdgeInsets.only(left: 4, bottom: 12),
           child: Text(
             'DATA',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
               fontWeight: FontWeight.w600,
               letterSpacing: 0.5,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.grey[300]
+                  : Colors.grey[800],
             ),
           ),
         ),
