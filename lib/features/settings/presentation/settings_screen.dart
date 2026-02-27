@@ -17,19 +17,28 @@ class SettingsTab extends ConsumerWidget {
       children: <Widget>[
         Text(
           'Settings',
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 4),
         Text(
           'Customize your app preferences',
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.7),
+          ),
         ),
-        const SizedBox(height: 24),
-        Text(
-          'Appearance',
-          style: Theme.of(context).textTheme.titleMedium,
+        const SizedBox(height: 32),
+        Padding(
+          padding: const EdgeInsets.only(left: 4, bottom: 12),
+          child: Text(
+            'APPEARANCE',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+          ),
         ),
-        const SizedBox(height: 8),
         Card(
           child: SwitchListTile(
             title: const Text('Dark Mode'),
@@ -41,12 +50,17 @@ class SettingsTab extends ConsumerWidget {
             },
           ),
         ),
-        const SizedBox(height: 24),
-        Text(
-          'Data',
-          style: Theme.of(context).textTheme.titleMedium,
+        const SizedBox(height: 32),
+        Padding(
+          padding: const EdgeInsets.only(left: 4, bottom: 12),
+          child: Text(
+            'DATA',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+          ),
         ),
-        const SizedBox(height: 8),
         Card(
           child: ListTile(
             leading: const Icon(Icons.delete_outline, color: AppColors.negative),
