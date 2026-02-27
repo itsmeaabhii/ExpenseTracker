@@ -9,84 +9,20 @@ class SettingsTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final showIncome = ref.watch(showIncomeProvider);
-    final enableNotifications = ref.watch(enableNotificationsProvider);
-    final defaultCurrency = ref.watch(defaultCurrencyProvider);
     final darkMode = ref.watch(darkModeProvider);
     final prefs = ref.watch(sharedPreferencesProvider);
-
-    final currencies = [
-      {'code': 'INR', 'name': 'Indian Rupee', 'symbol': '₹'},
-      {'code': 'USD', 'name': 'US Dollar', 'symbol': '\$'},
-      {'code': 'EUR', 'name': 'Euro', 'symbol': '€'},
-      {'code': 'GBP', 'name': 'British Pound', 'symbol': '£'},
-    ];
 
     return ListView(
       padding: const EdgeInsets.all(16),
       children: <Widget>[
         Text(
-          'General',
+          'Settings',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         const SizedBox(height: 8),
         Text(
-          'Customize your app experience',
+          'Customize your app preferences',
           style: Theme.of(context).textTheme.bodySmall,
-        ),
-        const SizedBox(height: 24),
-        Text(
-          'Preferences',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        const SizedBox(height: 8),
-        Card(
-          child: Column(
-            children: <Widget>[
-              SwitchListTile(
-                title: const Text('Show income in dashboard'),
-                subtitle: const Text('Display income summary on home screen'),
-                value: showIncome,
-                onChanged: (value) async {
-                  await prefs.setBool('showIncomeInDashboard', value);
-                  ref.invalidate(showIncomeProvider);
-                },
-              ),
-              const Divider(height: 0),
-              SwitchListTile(
-                title: const Text('Enable notifications'),
-                subtitle: const Text('Get reminders for bills and goals'),
-                value: enableNotifications,
-                onChanged: (value) async {
-                  await prefs.setBool('enableNotifications', value);
-                  ref.invalidate(enableNotificationsProvider);
-                },
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 24),
-        Text(
-          'Currency',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        const SizedBox(height: 8),
-        Card(
-          child: Column(
-            children: currencies.map((currency) {
-              return RadioListTile<String>(
-                title: Text('${currency['symbol']} ${currency['name']}'),
-                value: currency['code']!,
-                groupValue: defaultCurrency,
-                onChanged: (value) async {
-                  if (value != null) {
-                    await prefs.setString('defaultCurrency', value);
-                    ref.invalidate(defaultCurrencyProvider);
-                  }
-                },
-              );
-            }).toList(),
-          ),
         ),
         const SizedBox(height: 24),
         Text(
@@ -112,15 +48,11 @@ class SettingsTab extends ConsumerWidget {
         ),
         const SizedBox(height: 8),
         Card(
-          child: Column(
-            children: <Widget>[
-              ListTile(
-                leading: const Icon(Icons.delete_outline, color: AppColors.negative),
-                title: const Text('Clear All Data'),
-                subtitle: const Text('Delete all transactions and settings'),
-                onTap: () => _showClearDataDialog(context, ref),
-              ),
-            ],
+          child: ListTile(
+            leading: const Icon(Icons.delete_outline, color: AppColors.negative),
+            title: const Text('Clear All Transactions'),
+            subtitle: const Text('Delete all transaction data'),
+            onTap: () => _showClearDataDialog(context, ref),
           ),
         ),
         const SizedBox(height: 24),
@@ -138,9 +70,9 @@ class SettingsTab extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Clear All Data?'),
+        title: const Text('Clear All Transactions?'),
         content: const Text(
-          'This will permanently delete all your transactions, goals, budgets, and settings. This action cannot be undone.',
+          'This will permanently delete all your transaction data. This action cannot be undone.',
         ),
         actions: <Widget>[
           TextButton(
@@ -149,11 +81,11 @@ class SettingsTab extends ConsumerWidget {
           ),
           FilledButton(
             onPressed: () async {
-              // Clear all data
-              // Note: In a real app, you'd implement a clear all method in the database
+              // Clear all transactions
+              // In real implementation, add clearAllTransactions method to database
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('All data cleared')),
+                const SnackBar(content: Text('All transactions cleared')),
               );
             },
             style: FilledButton.styleFrom(
