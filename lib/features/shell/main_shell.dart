@@ -84,30 +84,39 @@ class _MainShellState extends State<MainShell> {
       floatingActionButton: _buildFab(context),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
+        selectedFontSize: 12,
+        unselectedFontSize: 11,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_outlined),
+            icon: const Icon(Icons.home_outlined),
+            activeIcon: const Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt_outlined),
+            icon: const Icon(Icons.receipt_long_outlined),
+            activeIcon: const Icon(Icons.receipt_long),
             label: 'Transactions',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.savings_outlined),
+            icon: const Icon(Icons.emoji_events_outlined),
+            activeIcon: const Icon(Icons.emoji_events),
             label: 'Goals',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart_outlined),
+            icon: const Icon(Icons.analytics_outlined),
+            activeIcon: const Icon(Icons.analytics),
             label: 'Analytics',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz_outlined),
+            icon: const Icon(Icons.apps_outlined),
+            activeIcon: const Icon(Icons.apps),
             label: 'More',
           ),
         ],

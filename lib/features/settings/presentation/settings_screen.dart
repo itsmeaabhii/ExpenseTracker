@@ -74,7 +74,6 @@ class SettingsTab extends ConsumerWidget {
         Card(
           child: Column(
             children: currencies.map((currency) {
-              final isSelected = defaultCurrency == currency['code'];
               return RadioListTile<String>(
                 title: Text('${currency['symbol']} ${currency['name']}'),
                 value: currency['code']!,
@@ -151,7 +150,6 @@ class SettingsTab extends ConsumerWidget {
           FilledButton(
             onPressed: () async {
               // Clear all data
-              final db = ref.read(appDatabaseProvider);
               // Note: In a real app, you'd implement a clear all method in the database
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
